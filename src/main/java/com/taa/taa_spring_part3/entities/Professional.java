@@ -1,8 +1,6 @@
 package com.taa.taa_spring_part3.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
 

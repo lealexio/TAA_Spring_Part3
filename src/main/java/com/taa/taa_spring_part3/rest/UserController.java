@@ -1,7 +1,6 @@
 package com.taa.taa_spring_part3.rest;
 
 import com.taa.taa_spring_part3.dao.UserDao;
-import com.taa.taa_spring_part3.entities.Professional;
 import com.taa.taa_spring_part3.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

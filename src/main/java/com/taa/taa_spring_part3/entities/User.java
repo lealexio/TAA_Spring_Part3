@@ -1,6 +1,5 @@
 package com.taa.taa_spring_part3.entities;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 

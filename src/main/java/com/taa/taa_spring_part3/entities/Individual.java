@@ -1,8 +1,6 @@
 package com.taa.taa_spring_part3.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.ArrayList;

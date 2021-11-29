@@ -3,14 +3,11 @@ package com.taa.taa_spring_part3.rest;
 import com.taa.taa_spring_part3.dao.IndividualDao;
 import com.taa.taa_spring_part3.dao.UserDao;
 import com.taa.taa_spring_part3.entities.Individual;
-import com.taa.taa_spring_part3.entities.Professional;
 import com.taa.taa_spring_part3.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Objects;
 import java.util.Optional;
 
 @RestController
