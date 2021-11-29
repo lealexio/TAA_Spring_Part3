@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@RequestMapping("professional")
 public class ProfessionalController {
 
     @Autowired
@@ -31,5 +33,11 @@ public class ProfessionalController {
             return "Error creating the user: " + ex.toString();
         }
         return "Professional succesfully created with id = " + userId;
+    }
+
+    @RequestMapping("/test")
+    @ResponseBody
+    public String home(){
+        return "Status : OK";
     }
 }

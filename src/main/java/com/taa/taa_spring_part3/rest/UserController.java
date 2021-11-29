@@ -3,11 +3,14 @@ package com.taa.taa_spring_part3.rest;
 import com.taa.taa_spring_part3.dao.UserDao;
 import com.taa.taa_spring_part3.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RestController
 @RequestMapping("user")
 public class UserController {
 
@@ -51,22 +54,21 @@ public class UserController {
     /**
      * GET /update  --> Update the firstname and the lastname for the user in the database having the passed id.
      */
-    @RequestMapping("/all")
+    @GetMapping("/all")
     @ResponseBody
     public String findAllUsers() {
         try {
-            List<User> user = userDao.findAll();
+            return userDao.findAll().toString();
         }
         catch (Exception ex) {
             return "Error updating the user: " + ex.toString();
         }
-        return "All users listed";
     }
 
     @RequestMapping("/test")
     @ResponseBody
     public String home(){
-        return "Hello World!";
+        return "Status : OK";
     }
 
 }
