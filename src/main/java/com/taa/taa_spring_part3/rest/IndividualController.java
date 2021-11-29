@@ -1,9 +1,9 @@
 package com.taa.taa_spring_part3.rest;
 
 import com.taa.taa_spring_part3.dao.IndividualDao;
+import com.taa.taa_spring_part3.dao.MeetingDao;
 import com.taa.taa_spring_part3.dao.UserDao;
-import com.taa.taa_spring_part3.entities.Individual;
-import com.taa.taa_spring_part3.entities.User;
+import com.taa.taa_spring_part3.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +19,9 @@ public class IndividualController {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private MeetingDao meetingDao;
 
     @Autowired
     private UserController userController;
@@ -53,9 +56,9 @@ public class IndividualController {
      */
     @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity removeProfessional(@PathVariable long id) {
-        Optional<Individual> pro = individualDao.findById(id);
-        if (pro.isPresent()){
+    public ResponseEntity removeIndividual(@PathVariable long id) {
+        Optional<Individual> individual = individualDao.findById(id);
+        if (individual.isPresent()){
             return userController.removeUser(id);
         }
         else{
@@ -63,6 +66,21 @@ public class IndividualController {
         }
     }
 
+    /**
+     * GET /create  --> Create a new Individual.
+     */
+    @RequestMapping(value= "/create", params = { "firstName", "lastName", "login", "password", "phone"}, method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity createIndividual(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("login") String login, @RequestParam("password") String password, @RequestParam("phone") String phone) {
+        try {
+            Individual individual = new Individual(firstName, lastName, login, password, phone);
+            individualDao.save(individual);
+            return ResponseEntity.status(HttpStatus.CREATED).body(individual);
+        }
+        catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("");
+        }
+    }
 
     /**
      * GET /all  --> Get all Individuals.
@@ -75,6 +93,28 @@ public class IndividualController {
         }
         catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("");
+        }
+    }
+
+    /**
+     * GET /linkMeeting  --> Link Meeting with Individual
+     */
+    @RequestMapping(value= "/linkMeeting", params = { "meetingId", "individualId"}, method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity addMeeting(@RequestParam("meetingId") long meetingId, @RequestParam("individualId") long individualId) {
+
+        Optional<Individual> indvidual_tmp = individualDao.findById(individualId);
+        Optional<Meeting> meeting_tmp = meetingDao.findById(meetingId);
+
+        if (indvidual_tmp.isPresent() && meeting_tmp.isPresent()){
+            Individual indvidual = indvidual_tmp.get();
+            Meeting meeting = meeting_tmp.get();
+            indvidual.meetingList.add(meeting);
+            individualDao.save(indvidual);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(indvidual);
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Individual with Id=" + individualId + " or Meeting with Id=" + meetingId + " not found.");
         }
     }
 

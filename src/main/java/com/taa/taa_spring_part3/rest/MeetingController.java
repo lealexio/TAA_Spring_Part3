@@ -35,6 +35,7 @@ public class MeetingController {
     @RequestMapping("/all")
     @ResponseBody
     public ResponseEntity getAllMeetings(){
+
         try {
             return ResponseEntity.status(HttpStatus.FOUND).body(meetingDao.findAll());
         }

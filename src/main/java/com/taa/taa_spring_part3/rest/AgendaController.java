@@ -62,6 +62,22 @@ public class AgendaController {
         }
     }
 
+
+    /**
+     * GET /state  --> Remove Agenda
+     */
+    @RequestMapping("/remove/{id}")
+    @ResponseBody
+    public ResponseEntity getAllAgenda(@PathVariable long id){
+        Optional<Agenda> optionalAgenda = agendaDao.findById(id);
+        if (optionalAgenda.isPresent()){
+            return ResponseEntity.status(HttpStatus.FOUND).body(optionalAgenda.get());
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error, Agenda with id=" + id + " not found");
+        }
+    }
+
     /**
      * GET /state  --> Test server response.
      */
