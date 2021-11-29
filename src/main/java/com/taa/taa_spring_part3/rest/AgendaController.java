@@ -33,14 +33,13 @@ public class AgendaController {
         }
     }
 
-    @RequestMapping(value = "/update/{id}/", params = {"firstName", "lastName", "login", "password"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/update/{id}/", params = {"url", "login", "password"}, method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity updateAgenda(@PathVariable long id, @RequestParam(name="url") String url, @RequestParam(name="login") String login, @RequestParam(name="password") String password) {
         try {
             Optional<Agenda> optionalAgenda = agendaDao.findById(id);
             if (optionalAgenda.isPresent()){
                 Agenda agenda = optionalAgenda.get();
-
                 if (!Objects.equals(url, "")){
                     agenda.setUrl(url);
                 }

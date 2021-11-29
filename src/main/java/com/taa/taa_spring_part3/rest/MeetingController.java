@@ -35,7 +35,6 @@ public class MeetingController {
     @RequestMapping("/all")
     @ResponseBody
     public ResponseEntity getAllMeetings(){
-
         try {
             return ResponseEntity.status(HttpStatus.FOUND).body(meetingDao.findAll());
         }
@@ -47,7 +46,7 @@ public class MeetingController {
     /**
      * GET /all  --> Add Meeting between Professional and Individual.
      */
-    @RequestMapping(value= "/addMeeting", params = { "professionalId", "IndividualId", "date", "entitled"}, method = RequestMethod.GET)
+    @RequestMapping(value= "/create", params = { "professionalId", "IndividualId", "date", "entitled"}, method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity createMeeting(@RequestParam("professionalId") Long agendaId, @RequestParam("IndividualId") Long IndividualId, @RequestParam("date") String date, @RequestParam("entitled") String entitled){
         try {

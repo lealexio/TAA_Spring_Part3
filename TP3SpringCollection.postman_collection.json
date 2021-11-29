@@ -1,0 +1,543 @@
+{
+	"info": {
+		"_postman_id": "51ed04bd-f0a0-46a5-85d1-3f09ca94b7b8",
+		"name": "TP3SpringCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Meeting",
+			"item": [
+				{
+					"name": "ListAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/meeting/create?professionalId=1&IndividualId=1&date=2021-05-05&entitled=RDV entitled",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meeting",
+								"create"
+							],
+							"query": [
+								{
+									"key": "professionalId",
+									"value": "1"
+								},
+								{
+									"key": "IndividualId",
+									"value": "1"
+								},
+								{
+									"key": "date",
+									"value": "2021-05-05"
+								},
+								{
+									"key": "entitled",
+									"value": "RDV entitled"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/meeting/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meeting",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Professional",
+			"item": [
+				{
+					"name": "CreateProfessionalWithAgenda",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/professional/createWithNewAgenda?firstName=alex&lastName=leloup&login=login&password=password&agendaUrl=agendaUrl&agendaLogin=agendaLogin&agendaPassword=agendaPassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professional",
+								"createWithNewAgenda"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "alex"
+								},
+								{
+									"key": "lastName",
+									"value": "leloup"
+								},
+								{
+									"key": "login",
+									"value": "login"
+								},
+								{
+									"key": "password",
+									"value": "password"
+								},
+								{
+									"key": "agendaUrl",
+									"value": "agendaUrl"
+								},
+								{
+									"key": "agendaLogin",
+									"value": "agendaLogin"
+								},
+								{
+									"key": "agendaPassword",
+									"value": "agendaPassword"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListAllProfessional",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/professional/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professional",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateProfessionalWithAgendaId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/professional/createFromAgendaId?firstName=alex&lastName=leloup&login=login&password=password&agendaId=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professional",
+								"createFromAgendaId"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "alex"
+								},
+								{
+									"key": "lastName",
+									"value": "leloup"
+								},
+								{
+									"key": "login",
+									"value": "login"
+								},
+								{
+									"key": "password",
+									"value": "password"
+								},
+								{
+									"key": "agendaId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProfessional",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/professional/get?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professional",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveProfessional",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/professional/remove/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professional",
+								"remove",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "EditUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/get/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/update/2/?firstName=salutt&lastName=&password=yjgcyjgc&login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"update",
+								"2",
+								""
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "salutt"
+								},
+								{
+									"key": "lastName",
+									"value": ""
+								},
+								{
+									"key": "password",
+									"value": "yjgcyjgc"
+								},
+								{
+									"key": "login",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/remove/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"remove",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Individual",
+			"item": [
+				{
+					"name": "findAllIndividuals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/individual/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"individual",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/individual/linkMeeting/2?meetingId=1&individualId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"individual",
+								"linkMeeting",
+								"2"
+							],
+							"query": [
+								{
+									"key": "meetingId",
+									"value": "1"
+								},
+								{
+									"key": "individualId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddMeeting",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/individual/remove/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"individual",
+								"remove",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/individual/create?firstName=azerty&lastName=uiop&login=log&password=pass&phone=265741728",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"individual",
+								"create"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "azerty"
+								},
+								{
+									"key": "lastName",
+									"value": "uiop"
+								},
+								{
+									"key": "login",
+									"value": "log"
+								},
+								{
+									"key": "password",
+									"value": "pass"
+								},
+								{
+									"key": "phone",
+									"value": "265741728"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agenda",
+			"item": [
+				{
+					"name": "getAllAgenda",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/agenda/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agenda",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/agenda/remove/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agenda",
+								"remove",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/agenda/update/1?url=url&login=newlogin&password=newpassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agenda",
+								"update",
+								"1"
+							],
+							"query": [
+								{
+									"key": "url",
+									"value": "url"
+								},
+								{
+									"key": "login",
+									"value": "newlogin"
+								},
+								{
+									"key": "password",
+									"value": "newpassword"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -38,7 +38,6 @@ public class IndividualController {
             if (optionalUser.isPresent()){
                 userController.updateUser(id, firstName, lastName, login, password);
                 User user = optionalUser.get();
-
                 userDao.save(user);
                 return ResponseEntity.status(HttpStatus.CREATED).body(user);
             }
@@ -103,15 +102,15 @@ public class IndividualController {
     @ResponseBody
     public ResponseEntity addMeeting(@RequestParam("meetingId") long meetingId, @RequestParam("individualId") long individualId) {
 
-        Optional<Individual> indvidual_tmp = individualDao.findById(individualId);
+        Optional<Individual> individual_tmp = individualDao.findById(individualId);
         Optional<Meeting> meeting_tmp = meetingDao.findById(meetingId);
 
-        if (indvidual_tmp.isPresent() && meeting_tmp.isPresent()){
-            Individual indvidual = indvidual_tmp.get();
+        if (individual_tmp.isPresent() && meeting_tmp.isPresent()){
+            Individual individual = individual_tmp.get();
             Meeting meeting = meeting_tmp.get();
-            indvidual.meetingList.add(meeting);
-            individualDao.save(indvidual);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(indvidual);
+            individual.meetingList.add(meeting);
+            individualDao.save(individual);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(individual);
         }
         else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Individual with Id=" + individualId + " or Meeting with Id=" + meetingId + " not found.");
