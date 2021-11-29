@@ -1,11 +1,23 @@
 # Getting Started
 
-### Reference Documentation
+## Run 
 
-For further reference, please consider the following sections:
+Run **TaaSpringPart3Application**
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.6.0/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.6.0/maven-plugin/reference/html/#build-image)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.6.0/reference/htmlsingle/#using-boot-devtools)
+## H2 Console
 
+Go to [localhost:8080/h2](localhost:8080/h2) to access the h2 console.
+
+#### Settings :
+|Settings|Value|
+|---|---|
+|Saved Settings|Generic H2|
+|Saved Name|Generic H2|
+|Driver Class|org.h2.Driver|
+|JDBC URL|jdbc:h2:mem:tpspring|
+|Username|sa|
+|Password|   |
+
+## POSTMAN Tests
+
+Load the PostMan Collection to test REST API.
