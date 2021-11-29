@@ -99,7 +99,6 @@ public class Agenda implements Serializable {
      * @return list of meeting
      */
     @OneToMany
-    @JoinColumn(name="agendaId")
     public List<Meeting> getMeetingList() {
         return meetingList;
     }

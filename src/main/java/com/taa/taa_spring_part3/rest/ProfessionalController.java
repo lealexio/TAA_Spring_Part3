@@ -1,14 +1,19 @@
 package com.taa.taa_spring_part3.rest;
 
 import com.taa.taa_spring_part3.dao.AgendaDao;
+import com.taa.taa_spring_part3.dao.IndividualDao;
 import com.taa.taa_spring_part3.dao.ProfessionalDao;
 import com.taa.taa_spring_part3.entities.Agenda;
+import com.taa.taa_spring_part3.entities.Individual;
+import com.taa.taa_spring_part3.entities.Meeting;
 import com.taa.taa_spring_part3.entities.Professional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 @RestController
@@ -20,6 +25,9 @@ public class ProfessionalController {
 
     @Autowired
     private AgendaDao agendaDao;
+
+    @Autowired
+    private UserController userController;
 
     /**
      * GET /createWithNewAgenda  --> Create a new professional with new empty agenda and save it in the database.
@@ -92,6 +100,21 @@ public class ProfessionalController {
         }
         catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("");
+        }
+    }
+
+    /**
+     * GET /remove/{id}  --> Remove Professional.
+     */
+    @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity removeProfessional(@PathVariable long id) {
+        Optional<Professional> pro = professionalDao.findById(id);
+        if (pro.isPresent()){
+            return userController.removeUser(id);
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Professional with Id=" + id + " not found.");
         }
     }
 
