@@ -7,7 +7,6 @@ import com.taa.taa_spring_part3.entities.Professional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -23,7 +22,7 @@ public class ProfessionalController {
     private AgendaDao agendaDao;
 
     /**
-     * GET /create  --> Create a new professional with new agenda and save it in the database.
+     * GET /createWithNewAgenda  --> Create a new professional with new empty agenda and save it in the database.
      */
     @RequestMapping(value= "/createWithNewAgenda", params = { "firstName", "lastName", "login", "password", "agendaUrl", "agendaLogin", "agendaPassword"}, method = RequestMethod.GET)
     @ResponseBody
@@ -41,7 +40,7 @@ public class ProfessionalController {
     }
 
     /**
-     * GET /create  --> Create a new professional with new agenda and save it in the database.
+     * GET /createFromAgendaId  --> Create a new professional from existing agenda id.
      */
     @RequestMapping(value= "/createFromAgendaId", params = { "firstName", "lastName", "login", "password", "agendaId"}, method = RequestMethod.GET)
     @ResponseBody
@@ -62,6 +61,9 @@ public class ProfessionalController {
         }
     }
 
+    /**
+     * GET /all  --> Return all Professionals.
+     */
     @RequestMapping("/all")
     @ResponseBody
     public ResponseEntity getAllProfessionals(){
@@ -72,9 +74,13 @@ public class ProfessionalController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("");
         }
     }
-    @RequestMapping(value= "/get", params = { "id"})
+
+    /**
+     * GET /get/{id}  --> Return a professional from id.
+     */
+    @RequestMapping(value= "/get/{id}", params = {"id"})
     @ResponseBody
-    public ResponseEntity getProfessionalFromId(@RequestParam("id") Long id){
+    public ResponseEntity getProfessionalFromId(@PathVariable("id") Long id){
         try {
             Optional<Professional> pro = professionalDao.findById(id);
             if (pro.isPresent()){
@@ -89,6 +95,9 @@ public class ProfessionalController {
         }
     }
 
+    /**
+     * GET /state  --> Test server response.
+     */
     @RequestMapping("/state")
     @ResponseBody
     public ResponseEntity test(){

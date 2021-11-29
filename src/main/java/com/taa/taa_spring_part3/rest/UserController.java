@@ -3,12 +3,11 @@ package com.taa.taa_spring_part3.rest;
 import com.taa.taa_spring_part3.dao.UserDao;
 import com.taa.taa_spring_part3.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("user")
@@ -18,57 +17,62 @@ public class UserController {
     private UserDao userDao;
 
     /**
-     * GET /delete  --> Delete the user having the passed id.
+     * GET /update/{id}/  --> Update user from id, empty params will be skipped
+     * Example : http://localhost:8080/user/update/2/?firstName=myNewFirstName&lastName=&password=myNewPassword&login
      */
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/update/{id}/", params = {"firstName", "lastName", "login", "password"}, method = RequestMethod.GET)
     @ResponseBody
-    public String delete(long id) {
+    public ResponseEntity updateUserFirstName(@PathVariable long id, @RequestParam(name="firstName") String firstName, @RequestParam(name="lastName") String lastName, @RequestParam(name="login") String login, @RequestParam(name="password") String password) {
         try {
-            User professional = new User(id);
-            userDao.delete(professional);
+            Optional<User> optionalUser = userDao.findById(id);
+            if (optionalUser.isPresent()){
+                User user = optionalUser.get();
+
+                if (!Objects.equals(firstName, "")){
+                    user.setFirstName(firstName);
+                }
+                if (!Objects.equals(lastName, "")){
+                    user.setLastName(lastName);
+                }
+                if (!Objects.equals(login, "")){
+                    user.setLogin(login);
+                }
+                if (!Objects.equals(password, "")){
+                    user.setPassword(password);
+                }
+                userDao.save(user);
+                return ResponseEntity.status(HttpStatus.CREATED).body(user);
+            }
+            else{
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error, user with id=" + id + " not found");
+            }
         }
         catch (Exception ex) {
-            return "Error deleting the user:" + ex.toString();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("");
         }
-        return "User succesfully deleted!";
     }
 
     /**
-     * GET /update  --> Update the firstname and the lastname for the user in the database having the passed id.
-     */
-    @RequestMapping("/update")
-    @ResponseBody
-    public String updateUserName(long id, String firstName, String lastName) {
-        try {
-            User user = userDao.findById(id).get();
-            user.setFirstName(firstName);
-            user.setLastName(lastName);
-            userDao.save(user);
-        }
-        catch (Exception ex) {
-            return "Error updating the user: " + ex.toString();
-        }
-        return "User succesfully updated!";
-    }
-
-    /**
-     * GET /update  --> Update the firstname and the lastname for the user in the database having the passed id.
+     * GET /all  --> Get all users.
      */
     @GetMapping("/all")
     @ResponseBody
-    public String findAllUsers() {
+    public ResponseEntity findAllUsers() {
         try {
-            return userDao.findAll().toString();
+            return ResponseEntity.status(HttpStatus.FOUND).body(userDao.findAll());
         }
         catch (Exception ex) {
-            return "Error updating the user: " + ex.toString();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("");
         }
     }
 
-    @RequestMapping("/test")
+    /**
+     * GET /state  --> Test server response.
+     */
+    @RequestMapping("/state")
     @ResponseBody
-    public String home(){
-        return "Status : OK";
+    public String test(){
+        return "State : OK";
     }
 
 }
